@@ -154,27 +154,7 @@ const productService = {
         })
     },
 
-    getProductByIdProduct: (idProduct) => {
-        return new Promise((resolve, reject) => {
-            let config = {
-                method: 'get',
-                maxBodyLength: Infinity,
-                url:`http://localhost:8080/product/findProductById/` + idProduct,
-                headers: {
-                    'Accept': 'application/json'
-                },
-                idProduct: idProduct
-            }
-            axios.request(config).then(response => {
-                resolve(response.data);
-            }).catch(function (err) {
-                reject(err)
-            });
-        })
-    },
-
     editProductByIdProduct: (product, idProduct) => {
-        console.log(product.id)
         return new Promise((resolve, reject) => {
             let config = {
                 method: 'post',
@@ -189,33 +169,11 @@ const productService = {
             }
             axios.request(config).then(response => {
                 resolve(response.data);
-                console.log("response.data sau khi edit = ", response.data);
             }).catch(function (err) {
                 reject(err)
             });
         })
     },
-
-    getProductByOrder: (idOrder) => {
-        console.log(idOrder)
-        return new Promise((resolve, reject) => {
-            let config = {
-                method: 'get',
-                maxBodyLength: Infinity,
-                url:`http://localhost:8080/product/findProductByOrderId/` + idOrder,
-                headers: {
-                    'Accept': 'application/json'
-                },
-                idOrder: idOrder
-            }
-            axios.request(config).then(response => {
-                resolve(response.data);
-                console.log("response.data sau khi edit = ", response.data);
-            }).catch(function (err) {
-                reject(err)
-            });
-        })
-    }
 
 }
 export default productService;

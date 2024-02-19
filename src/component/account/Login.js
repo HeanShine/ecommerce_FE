@@ -32,10 +32,15 @@ const Login = () => {
     const handleSubmit = async (values, {setSubmitting, setErrors}) => {
         axios.post('http://localhost:8080/login', values)
             .then(function (response) {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("account", JSON.stringify(response.data));
-                toast.success("Login Success !");
-                navigate("/");
+                if (response.data.roles[0].name === "ROLE_ADMIN") {
+                    localStorage.setItem("tokenAdmin", response.data.token);
+                    navigate("/admin");
+                } else {
+                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("account", JSON.stringify(response.data));
+                    toast.success("Login Success !");
+                    navigate("/");
+                }
             }).catch((error) => {
             console.log(error)
             toast.error("Wrong Username Or Password !")

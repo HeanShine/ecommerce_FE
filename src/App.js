@@ -14,6 +14,8 @@ import ProductByShop from "./component/shopProduct/ProductByShop";
 import ShowCart from "./component/card/ShowCart";
 import ShowOrder from "./component/order/ShowOrder";
 import ShowOrderDetail from "./component/order/ShowOrderDetail";
+import AccountManager from "./component/admin/AccountManager";
+import RevenueByYear from "./component/order/RevenueByYear";
 
 function App() {
     return (
@@ -34,7 +36,8 @@ function App() {
                 <Route path={"/cart"} element={<ShowCart/>}></Route>
                 <Route path={"/order"} element={<ShowOrder/>}></Route>
                 <Route path={"/orderDetail/:id"} element={<ShowOrderDetail/>}></Route>
-
+                <Route path={"/admin"} element={<AccountManager/>}></Route>
+                <Route path={"/revenueByYear"} element={<RevenueByYear/>}></Route>
             </Routes>
         </BrowserRouter>
     );

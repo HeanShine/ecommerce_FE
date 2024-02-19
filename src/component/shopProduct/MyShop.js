@@ -5,6 +5,7 @@ import shopService from "../../service/ShopService";
 import {toast} from "react-toastify";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
+import TotalSpent from "../../afake/TotalSpent";
 
 const MyShop = () => {
 
@@ -94,6 +95,9 @@ const MyShop = () => {
             </div>
 
             <Header/>
+
+                <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2" style={{marginLeft: "67px", width: "91%"}}
+                ><TotalSpent/></div>
 
             <div className="container">
                 <div className="cotainer">

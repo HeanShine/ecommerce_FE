@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Header from "./header";
 import categoryService from "../../service/categoryService";
 import productService from "../../service/ProductService";
+import {toast} from "react-toastify";
 
 const Home = () => {
 
@@ -28,6 +29,37 @@ const Home = () => {
         }, [load]
     );
 
+    const cart = localStorage.getItem('cart') == null ? [] : JSON.parse(localStorage.getItem('cart'));
+
+    const addCard = (id) => {
+        productService.getProductById(id).then(res => {
+            let quantityToCart = 1;
+            let index = checkProductToCart(id);
+            if (index !== -1) {
+                quantityToCart = cart[index].quantity + 1;
+                cart[index].quantity = quantityToCart;
+            }
+            else {
+                res.quantity = quantityToCart;
+                cart.push(res);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            toast.success('Add to cart success!');
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+
+    const checkProductToCart = (idProduct) => {
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id === idProduct) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     return (
         <>
             <div>
@@ -42,7 +74,7 @@ const Home = () => {
                             return (
                                 <div className="col-lg-4 col-md-6 pb-1">
                                     <div className="cat-item d-flex flex-column border mb-4" style={{padding: "30px"}}>
-                                        <p className="text-right"> ?? Products</p>
+                                        <p className="text-right">Products</p>
                                         <a href={"/productBy/" + category.id} className="cat-img position-relative overflow-hidden mb-3">
                                             <img className="img-fluid" src={category.imageMainCategory} alt=""
                                                  style={{width: '300px', height: '250px'}}/>
@@ -86,8 +118,10 @@ const Home = () => {
                                         <div className="card-footer d-flex justify-content-between bg-light border">
                                             <a href={"/productDetail/" + product.id} className="btn btn-sm text-dark p-0"><i
                                                 className="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                            <a href="" className="btn btn-sm text-dark p-0"><i
-                                                className="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                            <a  className="btn btn-sm text-dark p-0">
+                                                <button className="fas fa-shopping-cart text-primary mr-1"
+                                                        onClick={() => addCard(product.id)}>
+                                                </button>Add To Cart</a>
                                         </div>
                                     </div>
                                 </div>

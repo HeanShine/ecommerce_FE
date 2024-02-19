@@ -63,8 +63,8 @@ const Shop = () => {
                         <th>Id</th>
                         <th>name</th>
                         <th>avatar shop</th>
-                        <th className="action">Edit</th>
-                        <th className="action">Delete</th>
+                        {/*<th className="action">Edit</th>*/}
+                        {/*<th className="action">Delete</th>*/}
                     </tr>
                     </thead>
                     <tbody>
@@ -98,16 +98,16 @@ const Shop = () => {
                                         </a>
                                     </td>
 
-                                    <td>
-                                        <Link to={"/"}>
-                                            <button className="btn btn-warning" style={{marginTop: "50px"}}>Edit
-                                            </button>
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <button className="btn btn-danger" style={{marginTop: "50px"}}>delete
-                                        </button>
-                                    </td>
+                                    {/*<td>*/}
+                                    {/*    <Link to={"/"}>*/}
+                                    {/*        <button className="btn btn-warning" style={{marginTop: "50px"}}>Edit*/}
+                                    {/*        </button>*/}
+                                    {/*    </Link>*/}
+                                    {/*</td>*/}
+                                    {/*<td>*/}
+                                    {/*    <button className="btn btn-danger" style={{marginTop: "50px"}}>delete*/}
+                                    {/*    </button>*/}
+                                    {/*</td>*/}
                                 </tr>
                             </>
                         )
